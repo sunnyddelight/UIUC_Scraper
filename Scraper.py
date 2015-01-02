@@ -100,5 +100,5 @@ while True:
     if spots>0:
         notify(phone_number,'Your course({0} {1}) has an open spot!'.format(course_name,course_number))
         break
-    print 'Spots: '.format(spots)
-    time.sleep(time_interval)
+    print 'Spots: {0}'.format(spots)
+    time.sleep(int(time_interval))
