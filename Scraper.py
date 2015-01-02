@@ -2,6 +2,7 @@ import cookielib
 import mechanize
 import getpass
 import re
+import time
 from twilio.rest import TwilioRestClient
 def getWebPage(subj,crse,user,password):
     br=mechanize.Browser()
@@ -62,8 +63,6 @@ def calculateSpots(sections):
             min_spots=section_dict[key]
     return min_spots
 def notify(number, course_string):
-
-
 # put your own credentials here
     ACCOUNT_SID = "ACdff1eefaa26353a1fd2bce5c444b5f7b"
     AUTH_TOKEN = "e38afcca8f3b9a761b8eebee50782827"
@@ -73,15 +72,17 @@ def notify(number, course_string):
     client.messages.create(
         to="6304532551",
         from_="+13312155994",
-        body="course_string",
+        body=course_string,
     )
 
 username=raw_input('Username: ')
 password=getpass.getpass('Password: ')
 course_name=raw_input('Course Name: ')
 course_number=raw_input('Course Number: ')
+phone_number=raw_input('Phone Number: ')
+time_interval=raw_input('Time Interval: ')
 
-page=getWebPage(course_name,course_number,username,password)
+
 
 
 #more debugging stuff so we don't have to enter in our user/pass
@@ -92,9 +93,12 @@ page=getWebPage(course_name,course_number,username,password)
 #output.write(page)
 #temp=open('output.txt')
 #page=temp.read()
-
-
-sections=parsePage(page)
-spots=calculateSpots(sections)
-print spots
-wait = input("PRESS ENTER TO CONTINUE.")
+while True:
+    page=getWebPage(course_name,course_number,username,password)
+    sections=parsePage(page)
+    spots=calculateSpots(sections)
+    if spots>0:
+        notify(phone_number,'Your course({0} {1}) has an open spot!'.format(course_name,course_number))
+        break
+    print 'Spots: '.format(spots)
+    time.sleep(time_interval)
