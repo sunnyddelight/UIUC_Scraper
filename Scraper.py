@@ -87,7 +87,7 @@ time_interval=raw_input('Time Interval: ')
 
 #more debugging stuff so we don't have to enter in our user/pass
 #output=open('output.txt','w')
-#page=getWebPage('CS','173','syduan2',r'Rwylet314?')
+#page=getWebPage('CS','173','USERNAME',r'PASSWORD')
 
 #used for testing our scraper so we dont always need to query the page
 #output.write(page)
