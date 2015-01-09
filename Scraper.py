@@ -77,10 +77,10 @@ def notify(number, course_string):
 
 username=raw_input('Username: ')
 password=getpass.getpass('Password: ')
-course_name=raw_input('Course Name: ')
-course_number=raw_input('Course Number: ')
-phone_number=raw_input('Phone Number: ')
-time_interval=raw_input('Time Interval: ')
+course_name=raw_input('Course Subject (Subj): ')
+course_number=raw_input('Course Number (Crse): ')
+phone_number=raw_input('Your Phone Number: ')
+time_interval=raw_input('Time Interval (sec): ')
 
 
 
